@@ -1,0 +1,64 @@
+{
+  "user": [
+    {
+      "name": "abc",
+      "email": "abc@gmail.com",
+      "gender": "female",
+      "phoneNumber": "2323232323",
+      "password": "123456789",
+      "confirmPassword": "123456789",
+      "termsAndConditions": true,
+      "id": 1
+    },
+    {
+      "name": "akshay",
+      "email": "akshay@gmail.com",
+      "gender": "male",
+      "phoneNumber": "1233225543",
+      "password": "akshay123",
+      "confirmPassword": "akshay123",
+      "termsAndConditions": true,
+      "id": 2
+    },
+    {
+      "name": "Arsha S",
+      "email": "arsha@gmail.com",
+      "gender": "female",
+      "phoneNumber": "9887787676",
+      "password": "arsha123",
+      "confirmPassword": "arsha123",
+      "termsAndConditions": true,
+      "id": 3
+    },
+    {
+      "name": "arya",
+      "email": "arya@gmail.com",
+      "gender": "female",
+      "phoneNumber": "2345435678",
+      "password": "arya123",
+      "confirmPassword": "arya123",
+      "termsAndConditions": true,
+      "id": 4
+    },
+    {
+      "name": "Sree",
+      "email": "sree@gmail.com",
+      "gender": "female",
+      "phoneNumber": "9867876567",
+      "password": "sree123",
+      "confirmPassword": "sree123",
+      "termsAndConditions": true,
+      "id": 5
+    },
+    {
+      "name": "sreelakshmi",
+      "email": "sree12@gmail.com",
+      "gender": "female",
+      "phoneNumber": "8797988787",
+      "password": "sree123",
+      "confirmPassword": "sree123",
+      "termsAndConditions": true,
+      "id": 6
+    }
+  ]
+}
