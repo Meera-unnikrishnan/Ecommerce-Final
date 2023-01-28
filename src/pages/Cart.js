@@ -17,6 +17,7 @@ const Cart = () => {
         removeItem,
         emptyCart,
     } = useCart();
+    console.log(items);
     return (
         <>
         <Navbar/>

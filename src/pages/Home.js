@@ -1,19 +1,26 @@
 import React, { useEffect, useState } from "react";
-import { Container, Row, Col, InputGroup, FormControl } from "react-bootstrap";
+import { Container, Row, Col, InputGroup, FormControl,Button } from "react-bootstrap";
 import { useThemeHook } from "../GlobalComponents/ThemeProvider";
 import { BiSearch } from "react-icons/bi";
 import SearchFilter from "react-filter-search";
 import ProductCard from "../components/ProductCard";
 import Header from "../components/Header";
 import Slider from "../components/Slider";
+import Pagination from '@mui/material/Pagination';
+import Stack from '@mui/material/Stack';
 
 const Home = () => {
   const [theme] = useThemeHook();
   const [searchInput, setSearchInput] = useState("");
   const [productData, setProductData] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [postsPerPage, setPostsPerPage] = useState(9);
+  const [isTrue,setIsTrue] = useState("false");
+  const [isClick,setIsClick] = useState("false");
+  
 
   async function getResponse() {
-    const res = await fetch("https://dummyjson.com/products").then((res) =>
+    const res = await fetch("https://dummyjson.com/products?limit=90").then((res) =>
       res.json()
     );
     setProductData(await res.products);
@@ -23,6 +30,31 @@ const Home = () => {
     console.log(username);
     getResponse();
   }, []);
+  function handleNext() {
+    if(currentPage<=5){
+        setCurrentPage(currentPage + 1)
+        console.log('Next');
+    }
+    else{
+        setIsTrue("true");
+    }
+}
+function handlePrevious() {
+    if(currentPage>=1){
+        setCurrentPage(currentPage - 1)
+
+    }
+    else{
+        setIsClick("true");
+    }
+}
+  
+  const lastIndex = currentPage * postsPerPage;
+  const firstIndex = lastIndex - postsPerPage;
+  const [pageNumber, setPageNumber] = useState(0);
+  const currentProducts = productData.slice(firstIndex, lastIndex)
+  console.log(currentProducts)
+
 
   return (
     <>
@@ -56,7 +88,9 @@ const Home = () => {
               <FormControl
                 placeholder="Search"
                 value={searchInput}
-                onChange={(e) => setSearchInput(e.target.value)}
+                onChange={(e) => {setSearchInput(e.target.value);
+                }}
+                
                 className={
                   theme ? "bg-light-black text-light" : "bg-light text-black"
                 }
@@ -65,7 +99,7 @@ const Home = () => {
           </Col>
           <SearchFilter
             value={searchInput}
-            data={productData}
+            data={currentProducts}
             renderResults={(results) => (
               <Row className="justify-content-center">
                 {results.map((item, i) => (
@@ -76,6 +110,13 @@ const Home = () => {
           />
         </Row>
       </Container>
+      <div className='pages' style={{display:'flex',alignItems:'center',justifyContent:'center',padding:'5px'}}>
+      <Stack spacing={2}>
+      <Pagination count={6} page={currentPage}/>
+      </Stack>
+      <Button variant="warning" size="lg" style={{margin:'10px'}} className="previous"  onClick={handlePrevious}>Previous</Button> 
+      <Button variant="success" size="lg" className="next"  onClick={handleNext}>Next</Button>           
+       </div>
     </>
   );
 };

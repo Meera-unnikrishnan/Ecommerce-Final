@@ -45,9 +45,12 @@ const Header = () => {
            
           </Navbar.Brand>
         
-        <b><center style={{color:'orange'}}>WELCOME {User}</center></b>
+       
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
+        <div style={{display:'flex',alignItems:'center',justifyContent:'flex-end',marginLeft:'450px'}}>
+        <b><center style={{color:'orange'}}>WELCOME {User}</center></b>
+        </div>
           <Nav className="ms-auto">
             <Nav.Link
               className={darkMode ? "text-dark-primary" : "text-light-primary"}
@@ -62,7 +65,7 @@ const Header = () => {
               }`}
             >
               <CategoryIcon size="1.8rem" />
-              &nbsp;Products
+              &nbsp;Category
             </Link>
             <Link
               to="/cart"
@@ -78,9 +81,7 @@ const Header = () => {
                   {totalItems}
                 </span>
               )}
-              <span style={{ marginLeft: !isEmpty ? "-13px" : 0 ,color:'grey'}}>
-                &nbsp;Cart
-              </span>
+              
             </Link>
             <Link
               to="my-account"
@@ -89,7 +90,7 @@ const Header = () => {
               }`}
             >
               <VscAccount size="1.8rem" />
-              &nbsp;My Account
+              &nbsp;
             </Link>
             <Link
               to="/"
@@ -99,7 +100,7 @@ const Header = () => {
             >
             
               <LogoutIcon size="1.8rem"/>
-              &nbsp;LOGOUT
+              &nbsp;Logout
             </Link>
           </Nav>
         </Navbar.Collapse>

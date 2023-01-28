@@ -1,8 +1,13 @@
 import React from "react";
 // import "./checkout.css";
+import { Button} from 'react-bootstrap';
 import { useCart } from 'react-use-cart';
 import { useNavigate } from "react-router-dom";
 import Navbar from "./Nav";
+import { useState, useEffect } from "react";
+import { navigate } from "@reach/router";
+
+
 
 
 function Checkout() {
@@ -12,7 +17,16 @@ function Checkout() {
   const {
     isEmpty,
     items,
+    emptyCart,updateItemQuantity,removeItem,
     cartTotal,totalItems}=useCart()
+    console.log(items);
+    const Myorder= ()=>{
+      console.log('hi')
+        alert('Checkout Successfully')
+        emptyCart();
+        navigate('/home')
+    }
+    
   return (
     <>
     <Navbar/>
@@ -145,7 +159,7 @@ function Checkout() {
 
             <div className="mt-4 mb-4 d-flex justify-content-between">
             <button onClick={() => navigate(-1)} className="btn btn-danger px-3">Cancel</button>
-              <button onClick={()=>alert("Checkout successfull")} className="btn btn-success px-3">Pay Rs.{cartTotal}</button>
+            <button onClick={()=> Myorder()} className="btn btn-success px-3">Pay Rs.{cartTotal}</button>
             </div>
           </div>
 
@@ -160,6 +174,11 @@ function Checkout() {
                 <label>{item.title}</label>
                 <label>Rs.{item.price}</label>
                 <label>Quantity: {item.quantity}</label>
+                <div>
+                <Button style={{width:'50%'}} onClick={()=> updateItemQuantity(item.id, item.quantity - 1)} className="ms-2">-</Button>
+                <Button style={{width:'50%'}} onClick={()=> updateItemQuantity(item.id, item.quantity + 1)} className="ms-2">+</Button>
+                <Button variant="danger" onClick={()=> removeItem(item.id)} className="ms-2">Remove Item</Button>
+                </div>
                 </div>
                 </>
                 )

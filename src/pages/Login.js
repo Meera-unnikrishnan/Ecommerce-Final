@@ -23,6 +23,7 @@ const Login = () => {
   const [Username, setUsername] = useState("");
   const [Password, setPassword] = useState("");
   const [Name, setName] = useState("");
+  const[userid,setUserid]=useState("");
   useEffect(() => {
     sessionStorage.clear();
   }, []);
@@ -61,8 +62,10 @@ const Login = () => {
         } else {
           console.log(response[0].name);
           console.log(response[0].password);
+          console.log(response[0].id)
           sessionStorage.setItem("Name", response[0].name);
           sessionStorage.setItem("password", response[0].password);
+          sessionStorage.setItem("Userid", response[0].id);
 
           if (response.password === props.Password) {
             alert("Successfully logged");

@@ -39,10 +39,6 @@ const MyAccount = () => {
                         </Row>
                         <Nav variant="pills" className="flex-column">
                             <Nav.Item className="mb-3">
-                                <Nav.Link eventKey="my-orders">
-                                    My Orders
-                                    <FaClipboardList size="1.4rem" />
-                                </Nav.Link>
                                 <Nav.Link eventKey="account-details">
                                     Account Details
                                     <FaUser size="1.4rem" />
@@ -53,13 +49,6 @@ const MyAccount = () => {
                      </Col>
                      <Col sm={8} className={`${theme? 'text-light bg-dark' : 'text-black bg-light'} p-2 rounded`}>
                         <Tab.Content>
-                            <Tab.Pane eventKey="my-orders">
-                                <Heading heading="My Orders" size="h3" />
-                                <OrderCard/>
-              
-
-                                
-                            </Tab.Pane>
                             <Tab.Pane eventKey="account-details">
                                 <Heading heading="Account details" size="h3" />
                                  Name: {User}<br/>

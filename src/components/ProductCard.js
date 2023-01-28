@@ -4,16 +4,19 @@ import { useThemeHook } from '../GlobalComponents/ThemeProvider';
 import { useCart } from 'react-use-cart';
 import { BsCartPlus } from 'react-icons/bs';
 import { Link } from  "@reach/router";
-
+import {useState } from "react";
 
 const ProductCard = (props) => {
+    console.log(props)
     let { thumbnail, price, title, id} = props.data;
     const [theme] = useThemeHook();
     const { addItem } = useCart();
-
+   
     const addToCart = () =>{
         addItem(props.data);
     }
+  
+
     return (
         <>
         <Card 
@@ -44,6 +47,7 @@ const ProductCard = (props) => {
                 </Button>
             </Card.Body>
         </Card>
+       
         </>
     );
 };

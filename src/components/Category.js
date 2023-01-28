@@ -23,7 +23,7 @@ const Category = () => {
 
   function productDetails(val) {
     console.log("this is", val);
-    fetch(`https://dummyjson.com/products/category/${val}`)
+    fetch(`https://dummyjson.com/products/category/${val}?limit=3`)
       .then((res) => res.json())
       .then((data) => {
         setProducts(data.products);
@@ -79,10 +79,10 @@ const Category = () => {
             <div className="row text-center">
               {products.map((val, key) => {
                 return (
-                  <div className="col-md-3 mt-5">
+                  <div className="col-md-4 mt-5">
                     <div
                       className="card"
-                      style={{ height: "32rem", width: "18rem" }}
+                      style={{ height: "32rem", width: "18rem",marginLeft:'25px'}}
                       key={key}
                     >
                       <Link to={`/product-details/${val.id}`}>

@@ -8,11 +8,13 @@ import { useCart } from 'react-use-cart';
 import { BsCartPlus } from 'react-icons/bs';
 import Navbar from '../components/Nav';
 import { useParams } from 'react-router-dom';
+import Header from '../components/Header';
 
 const ProductDetails = (props) => {
     const [productData, setProductData] = useState([]);
+    const [Item,setItem]=useState([]);
     const [theme] = useThemeHook();
-    const { addItem } = useCart();
+    const { addItem,updateItemQuantity,items,getItem} = useCart();
     const id=useParams()
     console.log(id)
 
@@ -26,9 +28,11 @@ const ProductDetails = (props) => {
                           .then(res=> res.json());
                           setProductData(await res);
     }
+    const myItem = getItem(productData.id);
+    console.log(myItem)
     return (
         <>
-        <Navbar/>
+        <Header/>
         <Container className="py-5">
             <Row className="justify-content-center mt-5">
                 <Col xs={10} md={7} lg={5} className="p-0">
@@ -67,7 +71,11 @@ const ProductDetails = (props) => {
                         <BsCartPlus size="1.8rem"/>
                         Add to cart
                     </Button>
+                    <Button onClick={()=> updateItemQuantity(myItem.id, myItem.quantity-1)} className="ms-2">-</Button>
+                    <Button onClick={()=> updateItemQuantity(myItem.id, myItem.quantity + 1)} className="ms-2">+</Button>
+                    
                     <br/>
+                   
                     <b className={`${theme? 'text-dark-primary' : 'text-light-primary'} h4 mt-3 d-block`}>
                         Rs. {productData.price}
                     </b>
