@@ -5,6 +5,7 @@ import { useThemeHook } from '../GlobalComponents/ThemeProvider';
 import { BsCartCheck, BsCartX} from 'react-icons/bs';
 import Navbar from '../components/Nav';
 import { useNavigate } from "react-router-dom";
+import Header from '../components/Header';
 
 const Cart = () => {
     const [theme] = useThemeHook();
@@ -17,11 +18,12 @@ const Cart = () => {
         removeItem,
         emptyCart,
     } = useCart();
-    console.log(items);
     return (
         <>
-        <Navbar/>
-        <Container className="">
+        <div style={{marginBottom:'100px'}}>
+        <Header/>
+        </div>
+        <Container className="cartcontainer">
             <h1 className={`${theme? 'text-light': 'text-light-primary'} my-5 text-center`} style={{color:'green'}}>
                 {isEmpty? 'Your Cart is Empty' : 'Cart'}
             </h1>
@@ -52,10 +54,13 @@ const Cart = () => {
                                         <Button variant="danger" onClick={()=> removeItem(item.id)} className="ms-2">Remove Item</Button>
                                     </td>
                                 </tr>
+                                
                             )
+                           
                         })}
+                       
                     </tbody>
-                    <Button onClick={()=>navigate('/checkout')}>Checkout</Button>
+                   
                 </Table>
                 
                 {!isEmpty &&
@@ -63,6 +68,7 @@ const Cart = () => {
                         style={{ position: 'fixed', bottom: 0}}
                         className={`${theme? 'bg-light-black text-light' : 'bg-light text-balck'} justify-content-center w-100`}
                     >
+                     <Button style={{width:'30%'}} onClick={()=>navigate('/checkout')}>Checkout</Button>
                         <Col className="py-2" style={{background:'lightblue'}}>
                             <h4><b>Total Price: Rs. {cartTotal}</b></h4>
                         </Col>
